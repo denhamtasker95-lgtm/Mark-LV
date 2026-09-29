@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JARVIS V1 Preview</title>
+<style>
+:root{--c:#35e7ff;--dim:#0a7790;--bg:#01070b;--panel:#06131b;--green:#45ffa1}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 42%,#08202c 0,#02090e 38%,#000 78%);color:#bdf8ff;font-family:Consolas,monospace;min-height:100vh;overflow:hidden}
+.scan{position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 3px,#00d9ff08 4px)}
+.top{height:68px;border-bottom:1px solid #17495a;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:#010a10cc}
+.brand{font-size:22px;letter-spacing:7px;color:white}.brand b{color:var(--c)}.status{font-size:11px;letter-spacing:2px}.ok{color:var(--green)}
+.grid{display:grid;grid-template-columns:260px 1fr 300px;gap:18px;padding:20px;height:calc(100vh - 68px)}
+.panel{border:1px solid #164355;background:linear-gradient(145deg,#04121acc,#01080dcc);padding:16px;box-shadow:inset 0 0 30px #00d9ff08}
+h3{margin:0 0 16px;color:var(--c);font-size:11px;letter-spacing:3px;font-weight:500}
+.card{padding:12px;border-left:2px solid var(--dim);margin:9px 0;background:#05141b}.card strong{display:block;color:#e8fdff;font-size:12px}.card small{color:#4f9bad}
+.center{display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
+.ring{width:390px;height:390px;border-radius:50%;border:1px solid #21cce8;display:grid;place-items:center;box-shadow:0 0 35px #00d9ff38,inset 0 0 45px #00d9ff22;position:relative;animation:pulse 2.8s ease-in-out infinite}
+.ring:before,.ring:after{content:"";position:absolute;border-radius:50%;border:1px dashed #1786a0}.ring:before{inset:28px;animation:spin 14s linear infinite}.ring:after{inset:58px;animation:spin 9s linear infinite reverse}
+.core{width:155px;height:155px;border-radius:50%;background:radial-gradient(circle,#e8fdff 0 3%,#41edff 4% 11%,#087a99 13% 25%,#001017 60%);box-shadow:0 0 70px #35e7ff;display:grid;place-items:center;z-index:2}
+.core span{font-size:12px;letter-spacing:3px;color:white;text-shadow:0 0 10px #fff}
+.listen{margin-top:28px;color:var(--c);letter-spacing:5px;font-size:12px}.sub{margin-top:8px;color:#467d8c;font-size:11px}
+.activity{position:absolute;bottom:20px;width:80%;border-top:1px solid #164355;padding-top:12px;color:#62b5c5;font-size:11px}.activity b{color:var(--green)}
+.metric{margin:16px 0}.metric label{display:flex;justify-content:space-between;font-size:10px;color:#65b9c8}.bar{height:3px;background:#08232e;margin-top:6px}.fill{height:100%;background:var(--c)}
+button{width:100%;padding:10px;margin-top:8px;background:#03151e;border:1px solid #1b647a;color:#8eefff;font-family:inherit;letter-spacing:1px;cursor:pointer}button:hover{background:#083040}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes pulse{50%{box-shadow:0 0 65px #00d9ff55,inset 0 0 55px #00d9ff30}}
+@media(max-width:900px){body{overflow:auto}.grid{grid-template-columns:1fr;height:auto}.center{min-height:540px}.ring{width:300px;height:300px}.panel{min-height:220px}}
+</style></head>
+<body><div class="scan"></div>
+<div class="top"><div class="brand"><b>J.A.R.V.I.S</b> // V1</div><div class="status"><span class="ok">● SYSTEM ONLINE</span> &nbsp; DENHAM BUILD</div></div>
+<div class="grid">
+<section class="panel"><h3>INTELLIGENCE STACK</h3>
+<div class="card"><strong>GEMINI LIVE</strong><small>VOICE + LIVE SESSION // PRIMARY</small></div>
+<div class="card"><strong>OPENAI REASONING</strong><small>DEEP TASKS // CONNECTED</small></div>
+<div class="card"><strong>LOCAL AI</strong><small>5090 NODE // RESERVED</small></div>
+<h3 style="margin-top:28px">PROJECT BRAINS</h3>
+<button onclick="say('CarFlip brain selected')">CARFLIP</button><button onclick="say('D AI Lab brain selected')">D AI LAB</button><button onclick="say('Development agent selected')">DEV / GITHUB</button>
+</section>
+<main class="center">
+<div class="ring"><div class="core"><span>JARVIS</span></div></div>
+<div class="listen" id="state">AWAITING COMMAND</div><div class="sub">VOICE • VISION • MEMORY • COMPUTER • BROWSER</div>
+<div class="activity"><b>ACTIVE:</b> <span id="log">Hybrid intelligence core initialized. Safety gates enabled.</span></div>
+</main>
+<section class="panel"><h3>SYSTEM TELEMETRY</h3>
+<div class="metric"><label><span>CPU</span><span>18%</span></label><div class="bar"><div class="fill" style="width:18%"></div></div></div>
+<div class="metric"><label><span>MEMORY</span><span>34%</span></label><div class="bar"><div class="fill" style="width:34%"></div></div></div>
+<div class="metric"><label><span>AI CORE</span><span>READY</span></label><div class="bar"><div class="fill" style="width:91%"></div></div></div>
+<h3 style="margin-top:30px">CAPABILITIES</h3>
+<div class="card"><strong>COMPUTER CONTROL</strong><small>CONFIRMATION GATED</small></div>
+<div class="card"><strong>SCREEN VISION</strong><small>AVAILABLE</small></div>
+<div class="card"><strong>BROWSER AGENT</strong><small>AVAILABLE</small></div>
+<div class="card"><strong>PERSISTENT MEMORY</strong><small>LOCAL</small></div>
+</section></div>
+<script>
+function say(x){document.getElementById('state').textContent='PROCESSING';document.getElementById('log').textContent=x;setTimeout(()=>document.getElementById('state').textContent='AWAITING COMMAND',900)}
+</script></body></html>
